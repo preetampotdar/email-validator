@@ -1,0 +1,128 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.5.0'
+	id 'io.spring.dependency-management' version '1.1.7'
+	id 'jacoco'
+	id 'checkstyle'
+	id 'pmd'
+}
+
+group = 'com.preetam'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
+}
+
+jacoco {
+	toolVersion = "0.8.10"
+}
+
+checkstyle {
+	toolVersion = '10.12.4'
+	configFile = rootProject.file('config/checkstyle/google_checks.xml')
+}
+
+pmd {
+	toolVersion = '7.0.0'
+	ignoreFailures = false
+	ruleSets = ['category/java/bestpractices.xml',
+				'category/java/design.xml',
+				'category/java/codestyle.xml',
+				'category/java/documentation.xml',
+				'category/java/errorprone.xml',
+				'category/java/multithreading.xml',
+				'category/java/performance.xml',
+				'category/java/security.xml']
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation ('commons-validator:commons-validator:1.9.0') {
+		exclude group: 'commons-logging', module: 'commons-logging'
+	}
+	implementation 'dnsjava:dnsjava:3.6.3'
+	compileOnly 'org.projectlombok:lombok:1.18.38'
+	annotationProcessor 'org.projectlombok:lombok:1.18.38'
+	implementation 'jakarta.validation:jakarta.validation-api:3.1.1'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	implementation 'org.springframework.boot:spring-boot-starter-cache'
+	implementation 'com.github.ben-manes.caffeine:caffeine:3.2.0'
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'com.bucket4j:bucket4j_jdk17-core:8.14.0'
+	compileOnly 'jakarta.servlet:jakarta.servlet-api:6.1.0'
+
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	testImplementation 'org.mockito:mockito-core'
+	testImplementation 'org.assertj:assertj-core'
+	testImplementation 'com.fasterxml.jackson.core:jackson-databind'
+}
+
+tasks.withType(Checkstyle).configureEach {
+	ignoreFailures = false
+	reports {
+		xml.required = false
+		html.required = true
+	}
+	doFirst {
+		println "Running Checkstyle: $name"
+	}
+	doLast {
+		def reportFile = layout.buildDirectory.file("reports/checkstyle/${name}.html").get().asFile
+		if (reportFile.exists() && reportFile.text.contains("violation")) {
+			throw new GradleException("Checkstyle violations detected! Failing the build.")
+		}
+	}
+}
+
+tasks.withType(Pmd).configureEach {
+	reports {
+		xml.required.set(false)
+		html.required.set(true)
+	}
+	ignoreFailures = false
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+	finalizedBy('jacocoTestReport', 'jacocoTestCoverageVerification')
+}
+
+check.dependsOn tasks.checkstyleMain, tasks.checkstyleTest, tasks.pmdMain, tasks.pmdTest
+build.dependsOn check
+
+tasks.jacocoTestReport {
+	dependsOn tasks.test
+	reports {
+		xml.required.set(true)
+		html.required.set(true)
+	}
+}
+
+tasks.jacocoTestCoverageVerification {
+	dependsOn test
+	violationRules {
+		rule {
+			limit {
+				counter = 'LINE'
+				value = 'COVEREDRATIO'
+				minimum = 1.0
+			}
+			limit {
+				counter = 'BRANCH'
+				value = 'COVEREDRATIO'
+				minimum = 1.0
+			}
+		}
+	}
+}
+
+check.dependsOn tasks.jacocoTestCoverageVerification
