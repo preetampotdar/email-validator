@@ -1,5 +1,7 @@
 # Email Validator Application
 
+[![Java CI with Gradle](https://github.com/preetampotdar/email-validator/actions/workflows/gradle.yml/badge.svg)](https://github.com/preetampotdar/email-validator/actions/workflows/gradle.yml)
+
 ## Overview
 This Spring Boot application provides a REST API to validate email addresses. It checks for valid email syntax, disposable email domains, and MX DNS records.
 
