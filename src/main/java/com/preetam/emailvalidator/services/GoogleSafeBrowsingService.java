@@ -1,3 +1,7 @@
+/*
+ * Copyright 2025 Preetam Potdar
+ */
+
 package com.preetam.emailvalidator.services;
 
 import java.util.List;
@@ -92,6 +96,10 @@ public class GoogleSafeBrowsingService {
     return isSafe;
   }
 
+  /**
+   *
+   * @return LOGGER instance
+   */
   protected Logger getLogger() {
     return LOGGER;
   }

@@ -1,3 +1,7 @@
+/*
+ * Copyright 2025 Preetam Potdar
+ */
+
 package com.preetam.emailvalidator.configurations;
 
 import io.github.bucket4j.Bandwidth;

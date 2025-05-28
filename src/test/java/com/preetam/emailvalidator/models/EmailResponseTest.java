@@ -1,3 +1,7 @@
+/*
+ * Copyright 2025 Preetam Potdar
+ */
+
 package com.preetam.emailvalidator.models;
 
 import static org.assertj.core.api.Assertions.assertThat;

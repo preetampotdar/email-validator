@@ -1,3 +1,7 @@
+/*
+ * Copyright 2025 Preetam Potdar
+ */
+
 package com.preetam.emailvalidator.services;
 
 import com.preetam.emailvalidator.models.EmailResponse;
@@ -186,6 +190,10 @@ public class EmailValidatorService {
     return DISP_DOMAINS.contains(domain);
   }
 
+  /**
+   *
+   * @return LOGGER instance
+   */
   protected Logger getLogger() {
     return LOGGER;
   }

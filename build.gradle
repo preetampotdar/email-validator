@@ -5,6 +5,8 @@ plugins {
 	id 'jacoco'
 	id 'checkstyle'
 	id 'pmd'
+	id 'com.diffplug.spotless' version '7.0.3'
+	id 'maven-publish'
 }
 
 group = 'com.preetam'
@@ -14,10 +16,79 @@ java {
 	toolchain {
 		languageVersion = JavaLanguageVersion.of(17)
 	}
+	withSourcesJar()
+	withJavadocJar()
+}
+
+jar {
+	from('LICENSE') {
+		into 'META-INF'
+	}
+	from('NOTICE') {
+		into 'META-INF'
+	}
+}
+
+publishing {
+	publications {
+		mavenJava(MavenPublication) {
+			from components.java
+
+			pom {
+				name = 'Email Validator'
+				description = 'A robust Java library for validating email addresses and MX records.'
+				url = 'https://github.com/preetampotdar/email-validator'
+
+				licenses {
+					license {
+						name = 'The Apache License, Version 2.0'
+						url = 'https://www.apache.org/licenses/LICENSE-2.0.txt'
+						distribution = 'repo'
+					}
+				}
+
+				developers {
+					developer {
+						id = 'preetampotdar'
+						name = 'Preetam Potdar'
+						email = 'preetam1@outlook.com'
+					}
+				}
+
+				scm {
+					connection = 'scm:git:git://github.com/preetampotdar/email-validator.git'
+					developerConnection = 'scm:git:ssh://github.com:preetampotdar/email-validator.git'
+					url = 'https://github.com/preetampotdar/email-validator'
+				}
+			}
+		}
+	}
 }
 
 jacoco {
 	toolVersion = "0.8.10"
+}
+
+spotless {
+	java {
+		// Step 1: Remove or comment out googleJavaFormat if it touches Javadoc undesirably
+		/*googleJavaFormat('1.27.0')
+				.aosp() // optional: for Android style
+				.reflowLongStrings() // optional: false by default*/
+
+		// Step 2: Add a custom rule to preserve Javadoc (this is a workaround)
+		// Note: This doesn't fix existing issues, but avoids further altering them
+		// You may combine this with a licenseHeader step or other formatting
+
+		// Optional: License header, if needed
+		licenseHeaderFile 'LICENSE_HEADER'
+
+		// Optional: Target specific files (avoid generated or test files)
+		target 'src/**/*.java'
+
+		// Optional: Exclude files with special Javadoc formatting
+		// targetExclude '**/SomeFileWithSpecialJavadoc.java'
+	}
 }
 
 checkstyle {
