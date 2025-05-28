@@ -112,6 +112,10 @@ spring.cache.caffeine.spec=expireAfterWrite=30m,maximumSize=10000
 * The app relies on external DNS servers for MX record lookups; network issues may affect validation.
 * Disposable email domain list is hardcoded but can be extended or replaced with third-party services.
 
+## License
+
+This project is licensed under the [Apache License 2.0](LICENSE).
+
 ---
 
 *Created by Preetam Potdar*

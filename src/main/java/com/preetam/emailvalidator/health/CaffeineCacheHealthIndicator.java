@@ -1,3 +1,7 @@
+/*
+ * Copyright 2025 Preetam Potdar
+ */
+
 package com.preetam.emailvalidator.health;
 
 import com.github.benmanes.caffeine.cache.Cache;

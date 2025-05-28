@@ -1,3 +1,7 @@
+/*
+ * Copyright 2025 Preetam Potdar
+ */
+
 package com.preetam.emailvalidator.beans;
 
 import com.preetam.emailvalidator.services.LookupFactory;
