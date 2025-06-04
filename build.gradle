@@ -78,7 +78,7 @@ spotless {
 }
 
 checkstyle {
-	toolVersion = '10.12.4'
+	toolVersion = '10.25.0'
 	configFile = rootProject.file('config/checkstyle/google_checks.xml')
 }
 
