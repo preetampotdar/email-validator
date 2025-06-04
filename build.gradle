@@ -99,6 +99,11 @@ repositories {
 	mavenCentral()
 }
 
+configurations.configureEach {
+	resolutionStrategy {
+		force 'org.apache.commons:commons-compress:1.27.1'
+	}
+}
 dependencies {
 	implementation ('org.springframework.boot:spring-boot-starter') {
 		exclude group: 'org.apache.commons', module: 'commons-compress'
@@ -108,7 +113,9 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation ('commons-validator:commons-validator:1.9.0') {
 		exclude group: 'commons-logging', module: 'commons-logging'
+		exclude group: 'commons-beanutils', module: 'commons-beanutils'
 	}
+	implementation 'commons-beanutils:commons-beanutils:1.11.0'
 	implementation 'dnsjava:dnsjava:3.6.3'
 	compileOnly 'org.projectlombok:lombok:1.18.38'
 	annotationProcessor 'org.projectlombok:lombok:1.18.38'
