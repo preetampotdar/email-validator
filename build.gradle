@@ -46,7 +46,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-cache'
 
 	implementation 'org.apache.commons:commons-compress:1.27.1'
-	implementation 'org.eclipse.jgit:org.eclipse.jgit:7.2.1.202505142326-r'
+	implementation 'org.eclipse.jgit:org.eclipse.jgit:7.3.0.202506031305-r'
 	implementation 'commons-validator:commons-validator:1.9.0'
 	implementation 'commons-beanutils:commons-beanutils:1.11.0'
 	implementation 'dnsjava:dnsjava:3.6.3'
