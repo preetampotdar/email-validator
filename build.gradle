@@ -7,6 +7,7 @@ plugins {
 	id 'pmd'
 	id 'com.diffplug.spotless' version '7.2.1'
 	id 'maven-publish'
+	id "com.github.ben-manes.versions" version "0.52.0"
 }
 
 group = 'com.preetam'
@@ -14,7 +15,7 @@ version = '0.0.1-SNAPSHOT'
 
 java {
 	toolchain {
-		languageVersion = JavaLanguageVersion.of(17)
+		languageVersion = JavaLanguageVersion.of(21)
 	}
 	withSourcesJar()
 	withJavadocJar()
@@ -71,7 +72,7 @@ test {
 }
 
 jacoco {
-	toolVersion = "0.8.10"
+	toolVersion = "0.8.13"
 }
 
 jacocoTestReport {
@@ -101,12 +102,12 @@ jacocoTestCoverageVerification {
 }
 
 checkstyle {
-	toolVersion = '10.25.0'
+	toolVersion = '10.26.1'
 	configFile = rootProject.file('config/checkstyle/google_checks.xml')
 }
 
 pmd {
-	toolVersion = '7.10.0'
+	toolVersion = '7.16.0'
 	ruleSets = [
 			'category/java/bestpractices.xml',
 			'category/java/design.xml',

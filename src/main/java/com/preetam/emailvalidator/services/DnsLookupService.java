@@ -7,7 +7,8 @@ package com.preetam.emailvalidator.services;
 import org.xbill.DNS.Record;
 import org.xbill.DNS.TextParseException;
 
-/** Interface defining DNS lookup operations. */
+/** Functional interface defining DNS lookup operations. */
+@FunctionalInterface
 public interface DnsLookupService {
 
   /**

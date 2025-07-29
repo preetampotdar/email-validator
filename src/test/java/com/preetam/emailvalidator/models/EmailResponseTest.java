@@ -43,7 +43,6 @@ class EmailResponseTest {
   }
 
   @Test
-  @SuppressWarnings("PMD.LawOfDemeter")
   void testMxResponseIsSetCorrectly() {
     final MxResponse mxResponse = new MxResponse();
     mxResponse.setHasMx(true);
