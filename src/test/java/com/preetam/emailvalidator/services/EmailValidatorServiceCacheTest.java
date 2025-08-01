@@ -16,7 +16,7 @@ import org.springframework.test.context.bean.override.mockito.MockitoSpyBean;
 
 /**Integration tests for {@link EmailValidatorService} to verify caching behavior.
  *
- * <p> Uses {@link SpringBootTest} to load the full application context and
+ * <p>Uses {@link SpringBootTest} to load the full application context and
  * {@link AutoConfigureCache}
  * to enable and test Spring's caching mechanism for email validation.
  */

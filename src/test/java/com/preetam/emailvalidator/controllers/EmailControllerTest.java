@@ -24,8 +24,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 /**Unit tests for {@link EmailController}, focusing on the web layer.
  *
- * <p>
- * This test uses {@link WebMvcTest} to load only the {@code EmailController}
+ * <p>This test uses {@link WebMvcTest} to load only the {@code EmailController}
  * and related MVC components, excluding full application context.
  */
 @WebMvcTest(EmailController.class)
