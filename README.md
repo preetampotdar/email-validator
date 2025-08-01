@@ -16,7 +16,7 @@ This Spring Boot application provides a REST API to validate email addresses. It
 - Integration with Spring Boot Actuator for monitoring.
 
 ## Technologies Used
-- Java 17+
+- Java 21+
 - Spring Boot 3.x
 - Spring Web
 - Spring Boot Actuator
@@ -29,18 +29,11 @@ This Spring Boot application provides a REST API to validate email addresses. It
 ## Getting Started
 
 ### Prerequisites
-- Java 17 or higher installed
-- Maven or Gradle build tool
+- Java 21 or higher installed
+- Gradle build tool
 - Internet connection (for DNS lookups)
 
 ### Build and Run
-```bash
-./mvnw clean install
-./mvnw spring-boot:run
-````
-
-or using Gradle:
-
 ```bash
 ./gradlew clean build
 ./gradlew bootRun
@@ -89,12 +82,6 @@ Validation results are cached for 30 minutes using Caffeine Cache to reduce DNS 
 Unit tests cover the service logic, controller endpoints, cache behavior, and health indicators.
 
 Run tests with:
-
-```bash
-./mvnw test
-```
-
-or
 
 ```bash
 ./gradlew test
