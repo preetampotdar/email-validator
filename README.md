@@ -16,8 +16,8 @@ This Spring Boot application provides a REST API to validate email addresses. It
 - Integration with Spring Boot Actuator for monitoring.
 
 ## Technologies Used
-- Java 21+
-- Spring Boot 3.x
+- Java 25
+- Spring Boot 4.x
 - Spring Web
 - Spring Boot Actuator
 - Caffeine Cache
@@ -29,7 +29,7 @@ This Spring Boot application provides a REST API to validate email addresses. It
 ## Getting Started
 
 ### Prerequisites
-- Java 21 or higher installed
+- Java 25 or higher installed
 - Gradle build tool
 - Internet connection (for DNS lookups)
 
