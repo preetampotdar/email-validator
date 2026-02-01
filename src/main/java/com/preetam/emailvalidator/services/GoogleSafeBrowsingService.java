@@ -75,7 +75,6 @@ public class GoogleSafeBrowsingService {
     boolean isSafe;
     try {
 
-      @SuppressWarnings("PMD.LooseCoupling")
       final HttpHeaders headers = new HttpHeaders();
 
       headers.setContentType(MediaType.APPLICATION_JSON);

@@ -5,8 +5,8 @@
 package com.preetam.emailvalidator.health;
 
 import com.github.benmanes.caffeine.cache.Cache;
-import org.springframework.boot.actuate.health.Health;
-import org.springframework.boot.actuate.health.HealthIndicator;
+import org.springframework.boot.health.contributor.Health;
+import org.springframework.boot.health.contributor.HealthIndicator;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.caffeine.CaffeineCache;
 import org.springframework.stereotype.Component;

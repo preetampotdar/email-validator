@@ -98,7 +98,7 @@ class GoogleSafeBrowsingServiceTest {
   @Test
   void isDomainSafeReturnsTrueWhenResponseBodyIsNull() {
     when(restTemplate.postForEntity(anyString(), any(), eq(Map.class)))
-        .thenReturn(new ResponseEntity<>(null, HttpStatus.OK));
+        .thenReturn(new ResponseEntity<>(HttpStatus.OK));
 
     boolean result = service.isDomainSafe("safedomain.com");
 

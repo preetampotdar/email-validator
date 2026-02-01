@@ -7,19 +7,21 @@ package com.preetam.emailvalidator.models;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import tools.jackson.databind.json.JsonMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.cache.test.autoconfigure.AutoConfigureCache;
 import org.springframework.boot.test.context.SpringBootTest;
 
 /** Unit tests for {@link EmailResponse} to verify field setting
  *  and JSON serialization behavior. */
 @SpringBootTest
+@AutoConfigureCache
 @SuppressWarnings("PMD.AtLeastOneConstructor")
 class EmailResponseTest {
 
-  /** ObjectMapper for serializing/deserializing JSON. */
-  @Autowired private ObjectMapper objectMapper;
+  /** JsonMapper for serializing/deserializing JSON. */
+  @Autowired private JsonMapper jsonMapper;
 
   @Test
   void testEmailFieldIsSetCorrectly() {
@@ -70,7 +72,7 @@ class EmailResponseTest {
   void testJsonIncludesEmail() throws JsonProcessingException {
     final EmailResponse response = new EmailResponse();
     response.setEmail("abc@xyz.com");
-    final String jsonOutput = objectMapper.writeValueAsString(response);
+    final String jsonOutput = jsonMapper.writeValueAsString(response);
 
     assertThat(jsonOutput).contains("\"email\":\"abc@xyz.com\"");
   }
@@ -79,7 +81,7 @@ class EmailResponseTest {
   void testJsonIncludesValidSyntax() throws JsonProcessingException {
     final EmailResponse response = new EmailResponse();
     response.setValidSyntax(true);
-    final String jsonOutput = objectMapper.writeValueAsString(response);
+    final String jsonOutput = jsonMapper.writeValueAsString(response);
 
     assertThat(jsonOutput).contains("\"validSyntax\":true");
   }
@@ -88,7 +90,7 @@ class EmailResponseTest {
   void testJsonIncludesIsDisposable() throws JsonProcessingException {
     final EmailResponse response = new EmailResponse();
     response.setIsDisposable(false);
-    final String jsonOutput = objectMapper.writeValueAsString(response);
+    final String jsonOutput = jsonMapper.writeValueAsString(response);
 
     assertThat(jsonOutput).contains("\"isDisposable\":false");
   }
@@ -97,7 +99,7 @@ class EmailResponseTest {
   void testJsonDoesNotIncludeMxIfNull() throws JsonProcessingException {
     final EmailResponse response = new EmailResponse();
     // mx is not set here
-    final String jsonOutput = objectMapper.writeValueAsString(response);
+    final String jsonOutput = jsonMapper.writeValueAsString(response);
 
     assertThat(jsonOutput).doesNotContain("mx");
   }

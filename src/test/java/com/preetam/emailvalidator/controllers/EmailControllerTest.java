@@ -10,14 +10,15 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import tools.jackson.databind.json.JsonMapper;
 import com.preetam.emailvalidator.models.EmailRequest;
 import com.preetam.emailvalidator.models.EmailResponse;
 import com.preetam.emailvalidator.models.MxResponse;
 import com.preetam.emailvalidator.services.EmailValidatorService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.cache.test.autoconfigure.AutoConfigureCache;
+import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
@@ -28,10 +29,11 @@ import org.springframework.test.web.servlet.MockMvc;
  * and related MVC components, excluding full application context.
  */
 @WebMvcTest(EmailController.class)
+@AutoConfigureCache
 @SuppressWarnings("PMD")
 public class EmailControllerTest {
 
-  private final ObjectMapper objectMapper = new ObjectMapper();
+  private final JsonMapper objectMapper = new JsonMapper();
   @Autowired private MockMvc mockMvc;
   @MockitoBean private EmailValidatorService validatorService;
 
