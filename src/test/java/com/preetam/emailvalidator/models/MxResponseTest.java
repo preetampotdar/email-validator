@@ -7,9 +7,10 @@ package com.preetam.emailvalidator.models;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import tools.jackson.databind.json.JsonMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.cache.test.autoconfigure.AutoConfigureCache;
 import org.springframework.boot.test.context.SpringBootTest;
 
 /**
@@ -18,11 +19,13 @@ import org.springframework.boot.test.context.SpringBootTest;
  * behavior of the model.
  */
 @SpringBootTest
+@AutoConfigureCache
 @SuppressWarnings("PMD.AtLeastOneConstructor")
 class MxResponseTest {
 
-  /** ObjectMapper for serializing/deserializing JSON. */
-  @Autowired private ObjectMapper objectMapper;
+  /** JsonMapper for serializing/deserializing JSON. */
+  @Autowired
+  private JsonMapper jsonMapper;
 
   /** Verifies that 'hasMx' is correctly set and retrieved. */
   @Test
@@ -48,7 +51,7 @@ class MxResponseTest {
     final MxResponse response = new MxResponse();
     response.setHasMx(true);
 
-    final String json = objectMapper.writeValueAsString(response);
+    final String json = jsonMapper.writeValueAsString(response);
 
     assertThat(json).contains("\"hasMx\":true");
   }
@@ -59,7 +62,7 @@ class MxResponseTest {
     final MxResponse response = new MxResponse();
     // mxFailureReason is intentionally not set
 
-    final String json = objectMapper.writeValueAsString(response);
+    final String json = jsonMapper.writeValueAsString(response);
 
     assertThat(json).doesNotContain("mxFailureReason");
   }

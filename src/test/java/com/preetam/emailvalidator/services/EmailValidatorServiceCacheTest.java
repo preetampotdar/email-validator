@@ -10,7 +10,7 @@ import static org.mockito.Mockito.verify;
 
 import com.preetam.emailvalidator.models.EmailResponse;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.autoconfigure.core.AutoConfigureCache;
+import org.springframework.boot.cache.test.autoconfigure.AutoConfigureCache;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.bean.override.mockito.MockitoSpyBean;
 
