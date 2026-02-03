@@ -1,5 +1,5 @@
 # Step 1: Build the application
-FROM gradle:8.14.3-jdk21 AS build
+FROM gradle:jdk25 AS build
 
 # Set work directory
 WORKDIR /app
@@ -11,7 +11,7 @@ COPY . .
 RUN gradle clean build -x test
 
 # Step 2: Run the application
-FROM eclipse-temurin:21-jre-alpine
+FROM eclipse-temurin:25-jre-alpine
 
 # Set work directory
 WORKDIR /app
